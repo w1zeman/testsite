@@ -1,7 +1,20 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import NewsForm
+from django.views.generic import DetailView, UpdateView
 # Create your views here.
+
+
+class NewsDetailView(DetailView):
+    model = News
+    template_name = 'news/detail_view.html'
+    context_object_name = 'news'
+
+
+class NewsUpdateView(UpdateView):
+    model = News
+    template_name = 'news/create.html'
+    form_class = NewsForm
 
 def news_home(request):
     data2 = News.objects.all()
